@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Background ── */
+  --color-bg-base: #F6F1E4;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtle: #ECE2D0;
+
+  /* ── Ink (warm charcoal, not pure black) ── */
+  --color-ink-primary: #221B14;
+  --color-ink-secondary: #5C5348;
+  --color-ink-tertiary: #948A7C;
+  --color-ink-disabled: #C9C0B0;
+
+  /* ── Dusk — structural color: the evening sky on the road to Emmaus.
+     Used for nav, backdrops — never for content or state. ── */
+  --color-dusk: #33465B;
+  --color-dusk-soft: #E4E9EE;
+
+  /* ── Ember — the accent. The fire at the table where bread was broken. ── */
+  --color-accent-primary: #C1622B;
+  --color-accent-soft: #F2DFC9;
+  --color-accent-glow: #E08A4F;
+
+  /* ── States ── */
+  --color-success: #55713F;
+  --color-success-soft: #DEE6D2;
+  --color-danger: #9B3B2E;
+  --color-danger-soft: #EFDAD4;
+  --color-warning: #A8672C;
+
+  /* ── Borders ── */
+  --color-border-subtle: rgba(34, 27, 20, 0.07);
+  --color-border-default: rgba(34, 27, 20, 0.11);
+  --color-border-strong: rgba(34, 27, 20, 0.18);
+
+  /* ── Typography ── */
+  --font-sans: 'Geist', system-ui, -apple-system, sans-serif;
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+
+  /* Font sizes removed from @theme — defined as @utility below */
+
+  /* ── Spacing (4px system) ── */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+
+  /* ── Border radius ── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px rgba(34, 27, 20, 0.04);
+  --shadow-md: 0 4px 12px rgba(34, 27, 20, 0.05), 0 1px 3px rgba(34, 27, 20, 0.04);
+  --shadow-lg: 0 12px 32px rgba(34, 27, 20, 0.06), 0 4px 12px rgba(34, 27, 20, 0.04);
+  --shadow-elevated: 0 24px 48px rgba(34, 27, 20, 0.08);
+}
+
+/* ── Typography scale (utilities) ── */
+@utility text-displayXl {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@utility text-displayLg {
+  font-size: 2rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+@utility text-displayMd {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+@utility text-headingLg {
+  font-size: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+@utility text-headingMd {
+  font-size: 1.25rem;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+}
+@utility text-headingSm {
+  font-size: 1.0625rem;
+  line-height: 1.4;
+}
+@utility text-bodyLg {
+  font-size: 1rem;
+  line-height: 1.55;
+}
+@utility text-bodyMd {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+@utility text-bodySm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+@utility text-label {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+@utility text-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+@utility text-overline {
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+}
+
+/* ── Base styles ──
+   Wrapped in @layer base so it stays LOWER priority than the utilities
+   layer. Unlayered CSS always wins over layered CSS regardless of
+   specificity — an unlayered `* { padding: 0 }` here would silently
+   zero out every padding/margin utility in the app. */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-ink-primary);
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-default);
+    border-radius: var(--radius-full);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-border-strong);
+  }
+
+  /* ── Selection ── */
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-ink-primary);
+  }
+
+  /* ── Focus visible ── */
+  :focus-visible {
+    outline: 2px solid var(--color-ink-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Pointer cursor ──
+     Browsers only give <a> a pointer cursor by default, not <button> —
+     so every button in the app was showing the plain arrow. */
+  button:not(:disabled), [role="button"], summary, a, label[for] {
+    cursor: pointer;
+  }
+
+  /* ── Inputs ── */
+  input, textarea, select {
+    font-family: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-ink-tertiary);
+  }
+}
